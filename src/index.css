@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,15 +8,15 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 222 14% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 14% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 14% 16%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 252 56% 57%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -30,39 +33,32 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 252 56% 57%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 252 56% 57%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222 14% 16%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222 14% 18%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 14% 18%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 252 56% 57%;
+    --primary-foreground: 210 40% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -78,15 +74,16 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
+    --ring: 252 56% 57%;
+    
+    --sidebar-background: 222 14% 18%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: 252 56% 57%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 252 56% 57%;
   }
 }
 
@@ -96,6 +93,108 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#000000] text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+/* Custom styles */
+.progress-bar {
+  @apply h-2 rounded-full overflow-hidden bg-gray-200;
+}
+
+.progress-bar .progress {
+  @apply h-full bg-gradient-to-r from-taskly-blue to-taskly-pink;
+}
+
+.priority-pill {
+  @apply text-xs font-medium py-0.5 px-2 rounded-full;
+}
+
+.priority-pill.high-priority {
+  @apply bg-red-100 text-taskly-high-priority;
+}
+
+.priority-pill.medium {
+  @apply bg-green-100 text-taskly-medium;
+}
+
+.priority-pill.low {
+  @apply bg-blue-100 text-taskly-low;
+}
+
+.circular-progress {
+  @apply relative h-32 w-32 flex items-center justify-center;
+}
+
+.circular-progress svg {
+  @apply absolute top-0 left-0 w-full h-full;
+  transform: rotate(-90deg);
+}
+
+.circular-progress circle {
+  @apply stroke-[#f1f1f1] fill-none stroke-[20px];
+}
+
+.circular-progress .progress-circle {
+  @apply stroke-taskly-red fill-none stroke-[20px];
+  stroke-dasharray: 283;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.productivity-progress circle {
+  @apply stroke-[#f1f1f1] fill-none stroke-[20px];
+}
+
+.productivity-progress .progress-circle {
+  @apply stroke-taskly-pink fill-none stroke-[20px];
+  stroke-dasharray: 283;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.task-checkbox {
+  @apply h-5 w-5 rounded-md border-2 border-gray-300 flex items-center justify-center cursor-pointer transition-all duration-200;
+}
+
+.task-checkbox.checked {
+  @apply bg-taskly-blue border-taskly-blue;
+}
+
+.task-checkbox.checked svg {
+  @apply text-white;
+}
+
+.date-pill {
+  @apply flex items-center gap-1 text-xs py-1 px-2 rounded-full bg-gray-100 text-gray-600;
+}
+
+.time-pill {
+  @apply flex items-center gap-1 text-xs py-1 px-2 rounded-full bg-gray-100 text-gray-600;
+}
+
+.calendar-day {
+  @apply w-8 h-8 flex items-center justify-center rounded-full text-sm cursor-pointer transition-all;
+}
+
+.calendar-day.today {
+  @apply bg-taskly-blue text-white;
+}
+
+.calendar-day.selected {
+  @apply bg-taskly-pink text-white;
+}
+
+.tab-button {
+  @apply px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent transition-all;
+}
+
+.tab-button.active {
+  @apply text-taskly-blue border-taskly-blue;
+}
+
+/* Main container */
+.taskly-container {
+  @apply bg-white rounded-3xl overflow-hidden shadow-xl max-w-[1100px] mx-auto my-4;
 }
